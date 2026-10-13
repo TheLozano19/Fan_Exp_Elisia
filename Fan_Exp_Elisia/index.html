@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia Quiz Estilo Kahoot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="quiz-container">
+    <!-- Pantalla de Inicio -->
+    <div id="start-screen" class="start-screen">
+      <h1>¡Desafío Trivia!</h1>
+      <p>Responderás 7 preguntas aleatorias. Tienes 12 segundos por pregunta.</p>
+      <button class="btn-start" onclick="startQuiz()">Comenzar</button>
+    </div>
+
+    <!-- Pantalla de Preguntas -->
+    <div id="quiz-screen" class="hidden">
+      <div class="header-info">
+        <span id="question-number">Pregunta 1/7</span>
+        <div id="timer" class="timer-circle">12</div>
+      </div>
+      
+      <h2 id="question-text" class="question-title">Texto de la pregunta</h2>
+
+      <div class="options-grid">
+        <button class="btn-option opt-0" onclick="selectAnswer(0)"></button>
+        <button class="btn-option opt-1" onclick="selectAnswer(1)"></button>
+        <button class="btn-option opt-2" onclick="selectAnswer(2)"></button>
+        <button class="btn-option opt-3" onclick="selectAnswer(3)"></button>
+      </div>
+    </div>
+
+    <!-- Pantalla de Resultados -->
+    <div id="result-screen" class="result-screen hidden">
+      <h1>¡Juego Terminado!</h1>
+      <p id="score-text">Obtuviste X de 7 puntos</p>
+      <button class="btn-restart" onclick="startQuiz()">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
