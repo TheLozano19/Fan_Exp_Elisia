@@ -12,6 +12,7 @@
     <!-- Pantalla de Registro / Login -->
     <div id="auth-screen" class="auth-screen">
       <h1>¡Bienvenido a la Trivia de los Red Wolves!</h1>
+      <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
       <p>Ingresa tus datos para comenzar a jugar</p>
       
       <form id="auth-form" onsubmit="handleRegister(event)">
@@ -26,11 +27,14 @@
         </div>
         <button type="submit" class="btn-start">Registrarse e Ingresar</button>
       </form>
+      <p>Traida a ustedes por</p>
+      <img src="imagenes/Logo-netcloudservices.png" alt="Descripción de la imagen">
     </div>
 
     <!-- Pantalla de Inicio (Inicialmente oculta) -->
     <div id="start-screen" class="start-screen hidden">
       <h1>¡Trivia De Los Red Wolves!</h1>
+       <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
       <p id="welcome-message"></p>
       <p>Responderás 7 preguntas aleatorias sobre fútbol americano. Tienes 12 segundos por pregunta.</p>
       <button class="btn-start" onclick="startQuiz()">Comenzar</button>
@@ -56,8 +60,9 @@
     <!-- Pantalla de Resultados -->
     <div id="result-screen" class="result-screen hidden">
       <h1>¡Juego Terminado!</h1>
-      <p id="score-text">Obtuviste X de 7 puntos</p>
-      <button class="btn-restart" onclick="startQuiz()">Jugar de nuevo</button>
+       <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
+      <p id="score-text">Obtuviste X de 700 puntos</p>
+      <a href="https://www.instagram.com/arkansasstatemx/" class="btn-restart" target="_blank">Síguenos en Instagram</a>
     </div>
   </div>
 
@@ -67,4 +72,4 @@
 </body>
 </html>
 
- 
+

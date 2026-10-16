@@ -24,6 +24,10 @@ body {
   padding: 24px;
   box-shadow: 0 8px 24px rgba(248, 244, 244, 0.3);
   text-align: center;
+  img {
+  width: 200px;  /* Ancho fijo de 300 píxeles */
+  height: 100px; /* Alto fijo de 200 píxeles */
+      }
 }
 
 .header-info {
@@ -145,4 +149,36 @@ body {
 
 .input-group input:focus {
   border-color: #e21b3c;
+}
+.hero {
+  text-align: center;
+  padding: var(--space-xl) var(--space-sm);
+}
+
+.hero h1 {
+  font-size: var(--font-size-2xl);
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero p {
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+    margin-inline: auto;
+  }
 }
