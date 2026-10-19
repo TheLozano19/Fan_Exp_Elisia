@@ -182,3 +182,86 @@ body {
     margin-inline: auto;
   }
 }
+/* Estilos para el nuevo menú de resultados */
+.results-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre los botones */
+  margin: 20px 0;
+}
+
+.btn-menu {
+  background-color: #960a0a; /* Cambia este color según tu diseño */
+  color: #ffffff;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-menu:hover {
+  background-color: #030303;
+}
+hidden {
+  display: none !important;
+}
+
+/* Estilos para el menú de opciones en la pantalla de resultados */
+.results-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.btn-menu {
+  background-color: #222222;
+  color: #ffffff;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-menu:hover {
+  background-color: #444444;
+}
+
+/* Galería de imágenes en Fotos */
+.photos-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.photos-gallery img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Lista de jugadores en Roster */
+.roster-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.roster-list li {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Contenedor de estadísticas */
+.stats-container {
+  text-align: left;
+  margin: 15px 0;
+  line-height: 1.6;
+}

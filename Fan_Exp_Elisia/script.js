@@ -5,6 +5,34 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 
 let currentUser = null;
 
+// ==========================================
+// NUEVA FUNCIÓN: Control de pantallas (SPA)
+// ==========================================
+// Oculta todas las secciones registradas y muestra únicamente la seleccionada mediante id
+function showScreen(screenId) {
+  const screens = [
+    'auth-screen',
+    'start-screen',
+    'quiz-screen',
+    'result-screen',
+    'photos-screen', // Nueva pantalla de fotos
+    'stats-screen',  // Nueva pantalla de estadísticas
+    'roster-screen'  // Nueva pantalla de roster
+  ];
+
+  screens.forEach(id => {
+    const screen = document.getElementById(id);
+    if (screen) {
+      screen.classList.add('hidden');
+    }
+  });
+
+  const targetScreen = document.getElementById(screenId);
+  if (targetScreen) {
+    targetScreen.classList.remove('hidden');
+  }
+}
+
 function handleRegister(event) {
   event.preventDefault(); // Previene que la página se recargue al enviar el formulario
 
@@ -19,9 +47,8 @@ function handleRegister(event) {
     social: social || 'N/A'
   };
 
-  // Ocultar formulario de registro y mostrar pantalla de inicio
-  document.getElementById('auth-screen').classList.add('hidden');
-  document.getElementById('start-screen').classList.remove('hidden');
+  // CAMBIO: Se puede usar showScreen('start-screen') o la lógica original de ocultar/mostrar
+  showScreen('start-screen');
 
   // Mostrar mensaje personalizado de bienvenida
   document.getElementById('welcome-message').textContent = `Hola, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
@@ -54,9 +81,8 @@ function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
 
-  document.getElementById('start-screen').classList.add('hidden');
-  document.getElementById('result-screen').classList.add('hidden');
-  document.getElementById('quiz-screen').classList.remove('hidden');
+  // CAMBIO: Centralizado el cambio a la pantalla de preguntas
+  showScreen('quiz-screen');
 
   showQuestion();
 }
@@ -146,11 +172,11 @@ function nextQuestion() {
 async function showResults() {
   const maxPossibleScore = TOTAL_QUESTIONS * MAX_POINTS_PER_QUESTION;
   
-  document.getElementById('quiz-screen').classList.add('hidden');
-  document.getElementById('result-screen').classList.remove('hidden');
+  // CAMBIO: Usamos la función showScreen para cambiar a la pantalla de resultados
+  showScreen('result-screen');
   document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
 
-  // Insertar datos en Supabase
+  // Insertar datos en Supabase (Lógica de base de datos intacta)
   if (currentUser) {
     try {
       const { data, error } = await supabaseClient

@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -60,11 +60,54 @@
     <!-- Pantalla de Resultados -->
     <div id="result-screen" class="result-screen hidden">
       <h1>¡Juego Terminado!</h1>
-       <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
+       <img src="imagenes/logo-red-woves-negro.jpg" alt="Logo Red Wolves">
       <p id="score-text">Obtuviste X de 700 puntos</p>
+      
+      <!-- Nuevo Menú de Opciones -->
+      <h3>Opciones del equipo</h3>
+      <div class="results-menu">
+        <button class="btn-menu" onclick="showScreen('photos-screen')">Ver fotos de las jornadas deportivas</button>
+        <button class="btn-menu" onclick="showScreen('stats-screen')">Estadísticas del equipo y jugadores</button>
+        <button class="btn-menu" onclick="showScreen('roster-screen')">Revisar el roster de jugadores</button>
+      </div>
+
       <a href="https://www.instagram.com/arkansasstatemx/" class="btn-restart" target="_blank">Síguenos en Instagram</a>
     </div>
+
+    <!-- 5. Pantalla: Fotos de Jornadas -->
+    <div id="photos-screen" class="hidden">
+      <h2>Fotos de las Jornadas</h2>
+      <div class="photos-gallery">
+        <img src="imagenes/jornada1.jpg" alt="Jornada 1">
+        <img src="imagenes/jornada2.jpg" alt="Jornada 2">
+      </div>
+      <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
+    </div>
+
+    <!-- 6. Pantalla: Estadísticas -->
+    <div id="stats-screen" class="hidden">
+      <h2>Estadísticas del Equipo</h2>
+      <div class="stats-container">
+        <p><strong>Partidos Jugados:</strong> 8</p>
+        <p><strong>Partidos Ganados:</strong> 6</p>
+        <p><strong>Puntos Anotados:</strong> 210</p>
+      </div>
+      <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
+    </div>
+
+    <!-- 7. Pantalla: Roster -->
+    <div id="roster-screen" class="hidden">
+      <h2>Roster de Jugadores</h2>
+      <ul class="roster-list">
+        <li>#10 - Juan Pérez (QB)</li>
+        <li>#55 - Carlos Gómez (LB)</li>
+        <li>#88 - Mateo Ruiz (WR)</li>
+      </ul>
+      <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
+    </div>
+
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
