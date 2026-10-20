@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trivia Red Wolves </title>
+  <title>Trivia Red Wolves</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <!-- Pantalla de Registro / Login -->
     <div id="auth-screen" class="auth-screen">
       <h1>¡Bienvenido a la Trivia de los Red Wolves!</h1>
-      <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
+      <img src="imagenes/logo-red-woves-negro.jpg" alt="Logo Red Wolves">
       <p>Ingresa tus datos para comenzar a jugar</p>
       
       <form id="auth-form" onsubmit="handleRegister(event)">
@@ -27,14 +27,14 @@
         </div>
         <button type="submit" class="btn-start">Registrarse e Ingresar</button>
       </form>
-      <p>Traida a ustedes por</p>
-      <img src="imagenes/Logo-netcloudservices.png" alt="Descripción de la imagen">
+      <p>Traída a ustedes por</p>
+      <img src="imagenes/Logo-netcloudservices.png" alt="Logo Netcloud Services">
     </div>
 
-    <!-- Pantalla de Inicio (Inicialmente oculta) -->
+    <!-- Pantalla de Inicio -->
     <div id="start-screen" class="start-screen hidden">
       <h1>¡Trivia De Los Red Wolves!</h1>
-       <img src="imagenes/logo-red-woves-negro.jpg" alt="Descripción de la imagen">
+      <img src="imagenes/logo-red-woves-negro.jpg" alt="Logo Red Wolves">
       <p id="welcome-message"></p>
       <p>Responderás 7 preguntas aleatorias sobre fútbol americano. Tienes 12 segundos por pregunta.</p>
       <button class="btn-start" onclick="startQuiz()">Comenzar</button>
@@ -60,10 +60,9 @@
     <!-- Pantalla de Resultados -->
     <div id="result-screen" class="result-screen hidden">
       <h1>¡Juego Terminado!</h1>
-       <img src="imagenes/logo-red-woves-negro.jpg" alt="Logo Red Wolves">
+      <img src="imagenes/logo-red-woves-negro.jpg" alt="Logo Red Wolves">
       <p id="score-text">Obtuviste X de 700 puntos</p>
       
-      <!-- Nuevo Menú de Opciones -->
       <h3>Opciones del equipo</h3>
       <div class="results-menu">
         <button class="btn-menu" onclick="showScreen('photos-screen')">Ver fotos de las jornadas deportivas</button>
@@ -74,43 +73,176 @@
       <a href="https://www.instagram.com/arkansasstatemx/" class="btn-restart" target="_blank">Síguenos en Instagram</a>
     </div>
 
-    <!-- 5. Pantalla: Fotos de Jornadas -->
+    <!-- Pantalla: Fotos de Jornadas -->
     <div id="photos-screen" class="hidden">
       <h2>Fotos de las Jornadas</h2>
       <div class="photos-gallery">
-        <img src="imagenes/jornada1.jpg" alt="Jornada 1">
-        <img src="imagenes/jornada2.jpg" alt="Jornada 2">
+        <h3>Jornada 2</h3>
+        <img src="imagenes/1.JPG" alt="Jornada 2">
+        <img src="imagenes/5.JPG" alt="Jornada 2">
+        <img src="imagenes/7.JPG" alt="Jornada 2">
+        <img src="imagenes/9.JPG" alt="Jornada 2">
+        <img src="imagenes/11.JPG" alt="Jornada 2">
+        <img src="imagenes/13.JPG" alt="Jornada 2">
+        <img src="imagenes/15.JPG" alt="Jornada 2">
+        <img src="imagenes/17.JPG" alt="Jornada 2">
+        <img src="imagenes/19.JPG" alt="Jornada 2">
+        <img src="imagenes/21.JPG" alt="Jornada 2">
+        <img src="imagenes/23.JPG" alt="Jornada 2">
+        <h3>Jornada 4</h3>
+        <img src="imagenes/111.JPG" alt="Jornada 4">
+        <img src="imagenes/3.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8653.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8683.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8717.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8772.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8782.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8898.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_8958.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_9009.JPG" alt="Jornada 4">
+        <img src="imagenes/IMG_9122.JPG" alt="Jornada 4">
       </div>
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
 
-    <!-- 6. Pantalla: Estadísticas -->
+    <!-- Pantalla: Estadísticas con Gráficas de Radar -->
     <div id="stats-screen" class="hidden">
-      <h2>Estadísticas del Equipo</h2>
+      <h2>Estadísticas del Equipo (Semana 6)</h2>
       <div class="stats-container">
-        <p><strong>Partidos Jugados:</strong> 8</p>
-        <p><strong>Partidos Ganados:</strong> 6</p>
-        <p><strong>Puntos Anotados:</strong> 210</p>
+        <p><strong>Puntos a Favor (OF):</strong> 23 pts</p>
+        <p><strong>Yardas Totales Ganadas:</strong> 643 yd (Tierra: 530 / Aire: 113)</p>
+        <p><strong>Yardas Totales Permitidas:</strong> 1172 yd (Tierra: 732 / Aire: 440)</p>
+        <p><strong>Promedio Yardas por Juego:</strong> 107.2 Ganadas / 195.3 Permitidas</p>
       </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Comparativa Quarterbacks</h3>
+          <div class="chart-container">
+            <canvas id="qbChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Rendimiento de Corredores</h3>
+          <div class="chart-container">
+            <canvas id="rbChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Líderes Defensivos</h3>
+          <div class="chart-container">
+            <canvas id="defChart"></canvas>
+          </div>
+        </div>
+      </div>
+
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
 
-    <!-- 7. Pantalla: Roster -->
+    <!-- Pantalla: Roster -->
     <div id="roster-screen" class="hidden">
       <h2>Roster de Jugadores</h2>
       <ul class="roster-list">
-        <li>#10 - Juan Pérez (QB)</li>
-        <li>#55 - Carlos Gómez (LB)</li>
-        <li>#88 - Mateo Ruiz (WR)</li>
+        <h3>Quarterbacks(QB)</h3>
+        <li>#8 FERNANDO COLLADO VAZQUEZ (19 años)</li>
+        <li>#9 IKER ALEJANDRO MUÑOZ SANCHEZ (20 años)</li>
+        <li>#12 DEREK ZEPEDA GUTIERREZ (18 años)</li>
+        <li>#14 FERNANDO GABRIEL ESCALONA NAVA (21 años)</li>
+
+        <h3>Running Backs(RB)</h3>
+        <li>#7 KALEV EMILIANO ESCOBAR DARIO (20 años)</li>
+        <li>#15 HÉCTOR SÁNCHEZ SALASAR (20 años)</li>
+        <li>#20 MOISES IGNACIO DÍAZ EZCURRA (25 años)</li>
+        <li>#27 DIEGO SANTIAGO MANZANO BAEZ (20 años)</li>
+        <li>#32 EMILIANO ADE HERNÁNDEZ DUARTE (19 años)</li>
+        <li>#40 JAVIER SALAS ROBLES (19 años)</li>
+        <li>#83 JESUS BOGARD IBARRA AGUIRRE (20 años)</li>
+
+        <h3>Wide Receivers(WR)</h3>
+        <li>#0 GENARO FLORES LOBATO (21 años)</li>
+        <li>#1 ALAN OMAR MORA FLORES (20 años)</li>
+        <li>#2 JORGE ÁNDRES HERRERA MARTÍNEZ (20 años)</li>
+        <li>#4 DIEGO HAZIEL SANCHEZ DIAZ (22 años)</li>
+        <li>#5 JORGE ANDRÉ FLORES BASURTO (21 años)</li>
+        <li>#6 SIGFRIDO LÓPEZ JONGUITUD (20 años)</li>
+        <li>#13 JOSE MANUEL ROLDAN VEJAR (19 años)</li>
+        <li>#16 CARLOS ANDRES MONTERRUBIO RESILLAS (20 años)</li>
+        <li>#18 ANDRE RODRIGO VERGARA BAUTISTA (20 años)</li>
+        <li>#19 SANTIAGO VARGAS RUIZ (20 años)</li>
+        <li>#85 DANIEL BELTRAN MENDOZA (23 años)</li>
+        <li>#88 LUCAS ESPINOSA BURNS (20 años)</li>
+
+        <h3>Tight Ends(TE)</h3>
+        <li>#99 JOSE CARLOS VALLEJO CABALLERO (24 años)</li>
+
+        <h3>Offensive Line(OL)</h3>
+        <li>#54 ALAN REVUELTA DEL RIO (21 años)</li>
+        <li>#55 SANTIAGO VILLELA ARJONA (20 años)</li>
+        <li>#62 MARCO ANTONIO VARGAS ABARCA (21 años)</li>
+        <li>#66 LEONARDO AGUINACO CHOWELL (20 años)</li>
+        <li>#69 FRANCISCO ALEJANDRO BALLESTEROS GONZALEZ (25 años)</li>
+        <li>#70 ABRAHAM CERVANTES ORTIZ (19 años)</li>
+        <li>#71 HÉCTOR ANTÚNEZ ROBLES (19 años)</li>
+        <li>#74 MIGUEL ÁNGEL LIMA CORDERO (20 años)</li>
+        <li>#75 DITTER ALEXANDER SORIA BETANCOURT (20 años)</li>
+        <li>#77 DAVID AZCONA ALONSO (21 años)</li>
+        <li>#79 DIEGO ZUÑIGA MARIN (22 años)</li>
+
+        <h3>Defensive Line(DL)</h3>
+        <li>#24 JAIME GAEL JIMENEZ CRUZ (24 años)</li>
+        <li>#25 BRUNO RAVELO RODRÍGUEZ (25 años)</li>
+        <li>#43 EMILIO JIMENEZ PAZ (19 años)</li>
+        <li>#51 DIEGO NÚÑEZ MORENO (19 años)</li>
+        <li>#59 EMILIO HUITRON FLORES (20 años)</li>
+        <li>#60 JORGE ANTONIO PEREZ SANCHEZ (21 años)</li>
+        <li>#90 JUAN MANUEL ROBLES APANTENCO (22 años)</li>
+        <li>#91 DIEGO PEREDO SORDO (18 años)</li>
+        <li>#95 JOSÉ PABLO GÁLVEZ ALCÁNTAR (20 años)</li>
+        <li>#96 OSCAR MAURICIO PEREZ NUÑEZ (18 años)</li>
+        <li>#97 HÉCTOR ALEJANDRO ESTRADA LOZA (20 años)</li>
+        <li>#98 FERNANDO LOPEZ CHAVIRA (18 años)</li>
+
+        <h3>Linebackers(LB)</h3>
+        <li>#3 PAOLO BOLIO FERNANDEZ DE LARA (24 años)</li>
+        <li>#10 ALAN ZALDIVAR GUIDO (23 años)</li>
+        <li>#17 ELIAN GABRIEL GARCÍA VALOIS (19 años)</li>
+        <li>#21 GAEL AMADOR RIVAS (20 años)</li>
+        <li>#29 SANTIAGO LEVY AMADOR RIVAS (20 años)</li>
+        <li>#44 RODRIGO ARTURO CHAVEZ VARELA (21 años)</li>
+        <li>#50 MIGUEL ANGEL QUIÑONES HERNÁNDEZ (18 años)</li>
+        <li>#52 CARLO SANTIAGO OSEGUERA CABALLERO (18 años)</li>
+        <li>#53 JUAN PABLO BARCENAS DIAZ (21 años)</li>
+        <li>#56 ALVARO DÍAZ TONDA (20 años)</li>
+        <li>#57 LEONEL ALEJANDRO COSGALLA GARCÍA (18 años)</li>
+        <li>#58 IKER YAÑEZ RAMIREZ (20 años)</li>
+
+        <h3>Cornerbacks(CB)</h3>
+        <li>#22 JAIME FUENTES SANTILLAN (25 años)</li>
+        <li>#23 ORLANDO IVAN BENAVIDES RAMOS (20 años)</li>
+        <li>#28 EMILIO AGUSTIN SALVADOR ALVAREZ (18 años)</li>
+        <li>#31 DIEGO VILLANUEVA SAMANO (19 años)</li>
+        <li>#93 BRUNO HERNANDEZ GALINDO (19 años)</li>
+
+        <h3>Strong Safety(SS)</h3>
+        <li>#11 PATRICIO TREJO GUTIÉRREZ (24 años)</li>
+        <li>#26 DEMIAN ALEJANDRO GONZÁLEZ ANDRADE (19 años)</li>
+        <li>#33 GONZALO COALLA MUÑOZ (20 años)</li>
+        <li>#39 JORGE DIEGO ARENAS JONGUITUD (18 años)</li>
+
+        <h3>Free Safety(FS)</h3>
+        <li>#34 SANTIAGO CEREZO QUIZA (19 años)</li>
+        <li>#42 SANTIAGO LOPEZ SIGLER (19 años)</li>
       </ul>
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
 
   </div>
 
-
+  <!-- Librerías Externas -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
+  <!-- Script Principal -->
   <script src="script.js"></script>
 </body>
 </html>

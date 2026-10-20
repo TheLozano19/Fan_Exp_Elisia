@@ -4,20 +4,18 @@ const SUPABASE_ANON_KEY = 'sb_publishable_TBKGTxt4WLRcX9SI6-pZVA_ZRDClr2C';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let currentUser = null;
+let chartsInitialized = false;
 
-// ==========================================
-// NUEVA FUNCIÓN: Control de pantallas (SPA)
-// ==========================================
-// Oculta todas las secciones registradas y muestra únicamente la seleccionada mediante id
+// Control de pantallas (SPA)
 function showScreen(screenId) {
   const screens = [
     'auth-screen',
     'start-screen',
     'quiz-screen',
     'result-screen',
-    'photos-screen', // Nueva pantalla de fotos
-    'stats-screen',  // Nueva pantalla de estadísticas
-    'roster-screen'  // Nueva pantalla de roster
+    'photos-screen',
+    'stats-screen',
+    'roster-screen'
   ];
 
   screens.forEach(id => {
@@ -31,12 +29,17 @@ function showScreen(screenId) {
   if (targetScreen) {
     targetScreen.classList.remove('hidden');
   }
+
+  // Si se abre la pantalla de estadísticas, renderizar las gráficas de estrella
+  if (screenId === 'stats-screen' && !chartsInitialized) {
+    initRadarCharts();
+    chartsInitialized = true;
+  }
 }
 
 function handleRegister(event) {
-  event.preventDefault(); // Previene que la página se recargue al enviar el formulario
+  event.preventDefault();
 
-  // Capturar los valores introducidos
   const name = document.getElementById('user-name').value.trim();
   const email = document.getElementById('user-email').value.trim();
   const social = document.getElementById('user-social').value.trim();
@@ -47,10 +50,7 @@ function handleRegister(event) {
     social: social || 'N/A'
   };
 
-  // CAMBIO: Se puede usar showScreen('start-screen') o la lógica original de ocultar/mostrar
   showScreen('start-screen');
-
-  // Mostrar mensaje personalizado de bienvenida
   document.getElementById('welcome-message').textContent = `Hola, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
 }
 
@@ -67,7 +67,7 @@ const questionBank = [
 ];
 
 const TOTAL_QUESTIONS = 7;
-const TIME_LIMIT = 12; // segundos por pregunta
+const TIME_LIMIT = 12;
 const MAX_POINTS_PER_QUESTION = 100;
 
 let selectedQuestions = [];
@@ -81,9 +81,7 @@ function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
 
-  // CAMBIO: Centralizado el cambio a la pantalla de preguntas
   showScreen('quiz-screen');
-
   showQuestion();
 }
 
@@ -140,7 +138,6 @@ function selectAnswer(selectedIndex) {
   if (selectedIndex === q.correct) {
     const pointsGained = Math.round((timeLeft / TIME_LIMIT) * MAX_POINTS_PER_QUESTION);
     score += pointsGained;
-    
     buttons[selectedIndex].classList.add('correct');
   } else {
     buttons[selectedIndex].classList.add('incorrect');
@@ -172,11 +169,9 @@ function nextQuestion() {
 async function showResults() {
   const maxPossibleScore = TOTAL_QUESTIONS * MAX_POINTS_PER_QUESTION;
   
-  // CAMBIO: Usamos la función showScreen para cambiar a la pantalla de resultados
   showScreen('result-screen');
   document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
 
-  // Insertar datos en Supabase (Lógica de base de datos intacta)
   if (currentUser) {
     try {
       const { data, error } = await supabaseClient
@@ -201,5 +196,107 @@ async function showResults() {
   }
 }
 
+// Inicialización de Gráficas de Radar
+function initRadarCharts() {
+  const commonRadarOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      r: {
+        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+        grid: { color: 'rgba(255, 255, 255, 0.2)' },
+        pointLabels: { color: '#ffffff', font: { size: 10 } },
+        suggestedMin: 0,
+        suggestedMax: 100,
+        ticks: { display: false }
+      }
+    },
+    plugins: {
+      legend: { labels: { color: '#ffffff' }, position: 'bottom' }
+    }
+  };
+
+  // 1. Gráfica de Quarterbacks
+  new Chart(document.getElementById('qbChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: ['% Completados', 'Yardas por Aire', 'Eficiencia', 'Cuidado de Balón', 'Protección'],
+      datasets: [
+        {
+          label: 'Iker Muñoz (#09)',
+          data: [45.5, 100, 64.6, 50, 20],
+          backgroundColor: 'rgba(227, 24, 55, 0.4)',
+          borderColor: 'rgba(227, 24, 55, 1)',
+          pointBackgroundColor: 'rgba(227, 24, 55, 1)'
+        },
+        {
+          label: 'Fernando Escalona',
+          data: [58.3, 75.7, 100, 100, 100],
+          backgroundColor: 'rgba(54, 162, 235, 0.4)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+        }
+      ]
+    },
+    options: commonRadarOptions
+  });
+
+  // 2. Gráfica de Corredores
+  new Chart(document.getElementById('rbChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: ['Acarreos', 'Yardas Totales', 'Promedio yd/acarreo', 'Efectividad'],
+      datasets: [
+        {
+          label: 'Fernando Escalona',
+          data: [94.5, 100, 100, 90],
+          backgroundColor: 'rgba(40, 167, 69, 0.4)',
+          borderColor: 'rgba(40, 167, 69, 1)',
+          pointBackgroundColor: 'rgba(40, 167, 69, 1)'
+        },
+        {
+          label: 'Iker Muñoz',
+          data: [100, 97.7, 92.5, 85],
+          backgroundColor: 'rgba(255, 193, 7, 0.4)',
+          borderColor: 'rgba(255, 193, 7, 1)',
+          pointBackgroundColor: 'rgba(255, 193, 7, 1)'
+        },
+        {
+          label: 'Genaro Flores',
+          data: [32.4, 22.8, 66.5, 50],
+          backgroundColor: 'rgba(153, 102, 255, 0.4)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          pointBackgroundColor: 'rgba(153, 102, 255, 1)'
+        }
+      ]
+    },
+    options: commonRadarOptions
+  });
+
+  // 3. Gráfica Defensiva
+  new Chart(document.getElementById('defChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: ['Tacleadas', 'Intercepciones', 'Yardas Regreso', 'Impacto'],
+      datasets: [
+        {
+          label: 'Gael Amador (#21)',
+          data: [100, 50, 61.5, 85],
+          backgroundColor: 'rgba(255, 99, 132, 0.4)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+        },
+        {
+          label: 'Santiago Cerezo (#34)',
+          data: [93.7, 100, 0, 90],
+          backgroundColor: 'rgba(75, 192, 192, 0.4)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+        }
+      ]
+    },
+    options: commonRadarOptions
+  });
+}
 //contraseña para la base de datos en supabase 
 //LOsRedWolvessirifan_Espero 
