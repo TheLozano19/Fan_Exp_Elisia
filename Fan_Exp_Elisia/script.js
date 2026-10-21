@@ -6,6 +6,29 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 let currentUser = null;
 let chartsInitialized = false;
 
+// Auto-detectar al cargar la página si ya existe un usuario o si ya completó la trivia
+document.addEventListener('DOMContentLoaded', () => {
+  const savedUser = localStorage.getItem('rw_user');
+  const savedCompleted = localStorage.getItem('rw_completed');
+  const savedScore = localStorage.getItem('rw_score');
+
+  if (savedUser) {
+    currentUser = JSON.parse(savedUser);
+
+    if (savedCompleted === 'true') {
+      // Si ya completó la trivia, lo enviamos directo a los resultados
+      score = parseInt(savedScore || '0', 10);
+      const maxPossibleScore = TOTAL_QUESTIONS * MAX_POINTS_PER_QUESTION;
+      document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
+      showScreen('result-screen');
+    } else {
+      // Si solo completó el registro pero no ha hecho la trivia
+      document.getElementById('welcome-message').textContent = `Hola de nuevo, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
+      showScreen('start-screen');
+    }
+  }
+});
+
 // Control de pantallas (SPA)
 function showScreen(screenId) {
   const screens = [
@@ -50,8 +73,20 @@ function handleRegister(event) {
     social: social || 'N/A'
   };
 
+  // Guardar datos del registro en localStorage
+  localStorage.setItem('rw_user', JSON.stringify(currentUser));
+
   showScreen('start-screen');
   document.getElementById('welcome-message').textContent = `Hola, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
+}
+
+// Función opcional por si deseas permitir que cambien de usuario o reinicien el registro
+function resetSession() {
+  localStorage.removeItem('rw_user');
+  localStorage.removeItem('rw_completed');
+  localStorage.removeItem('rw_score');
+  currentUser = null;
+  showScreen('auth-screen');
 }
 
 const questionBank = [
@@ -171,6 +206,10 @@ async function showResults() {
   
   showScreen('result-screen');
   document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
+
+  // Marcar como completado y guardar puntaje en el navegador
+  localStorage.setItem('rw_completed', 'true');
+  localStorage.setItem('rw_score', score.toString());
 
   if (currentUser) {
     try {
@@ -298,4 +337,3 @@ function initRadarCharts() {
     options: commonRadarOptions
   });
 }
-

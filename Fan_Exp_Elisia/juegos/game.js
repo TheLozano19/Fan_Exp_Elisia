@@ -53,7 +53,7 @@ async function boot() {
 }
 
 /* ---------- Navegación y Menú Popup ---------- */
-$('#bhome').onclick = () => { window.location.href = 'index.html'; };
+$('#bhome').onclick = () => { window.location.href = '../index.html'; };
 const openHelp = () => $('#helpModal').classList.add('on');
 const closeHelp = () => $('#helpModal').classList.remove('on');
 if($('#bhelp')) $('#bhelp').onclick = openHelp;
