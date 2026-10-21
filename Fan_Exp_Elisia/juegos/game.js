@@ -4,9 +4,9 @@ const E = [
   '<img src="assets/balon.png" class="im">', 
   '<img src="assets/casco.png" class="im">', 
   '<img src="assets/hombreras.png" class="im">', 
-  '<img src="assets/Playbook.png" class="im">', 
+  '<img src="assets/playbook.png" class="im">', 
   '<img src="assets/cleats.png" class="im">', 
-  '<img src="assets/Guantes.png" class="im">'
+  '<img src="assets/guantes.png" class="im">'
 ];
 const LV = [[95,22,{0:12}],[85,22,{1:14,0:10}],[75,20,{},0,1],[65,22,{},8],[55,20,{2:15,3:15}],[45,20,{},0,2],
 [35,22,{0:12},12],[25,20,{1:20,4:20}],[15,24,{},8,2],[10,22,{},14],[5,24,{5:15},0,3],[1,26,{0:20,2:20},12,2]];
@@ -46,7 +46,7 @@ function say(t, f=400) { const d=document.createElement('div'); d.className='fl'
 
 /* ---------- Carga inicial ---------- */
 async function boot() {
- const IM=['LogoRedwolfs.png','LogoArkansas.jpg','VS.jpg','balon.png','casco.png','hombreras.png','Playbook.png','cleats.png','Guantes.png','botella.png'];
+ const IM=['logoredwolfs.png','logoarkansas.jpg','vs.jpg','balon.png','casco.png','hombreras.png','playbook.png','cleats.png','guantes.png','botella.png'];
  let n=0; const up=()=>$('#lb').style.width=(++n/(IM.length+2)*100)+'%';
  await Promise.all(IM.map(f => new Promise(r => { const i=new Image(); i.onload=i.onerror=()=>{up();r()}; i.src='assets/'+f })));
  buildMap(); up(); tick(); if(document.fonts) await document.fonts.ready; up(); await sleep(350); show('home');

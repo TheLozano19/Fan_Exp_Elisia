@@ -60,7 +60,7 @@ em{font-size:56px;color:var(--r);-webkit-text-stroke:2px #fff;font-style:normal}
 .s-r::after{content:'🔥↔'}.s-c::after{content:'🔥↕'}.s-x::after{content:'💥'}
 
 /* PODER RUGIDO RED WOLF (5 en línea): Oculta la imagen original */
-.s-z{background:#fff url(assets/LogoRedwolfs.png) center/78% no-repeat!important;font-size:0;box-shadow:0 0 0 3px gold,0 0 14px gold}
+.s-z{background:#fff url(assets/logoredwolfs.png) center/78% no-repeat!important;font-size:0;box-shadow:0 0 0 3px gold,0 0 14px gold}
 .s-z img { display: none !important; }
 
 /* Animación del balón en llamas */
