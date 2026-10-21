@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+<title>RedWolfs Match · A-State México</title>
+<link rel="stylesheet" href="styles.css"></head><body>
+
+<section id="load" class="s on"><img src="assets/LogoRedwolfs.png" class="lg"><h2>Cargando el estadio…</h2><div class="bar"><b id="lb"></b></div></section>
+
+<section id="home" class="s">
+  <img src="assets/LogoRedwolfs.png" class="lg big">
+  <h1>RED<span>WOLFS</span><br>MATCH</h1>
+  <p>A-State México · Gridiron</p>
+  <button class="btn" id="play">JUGAR</button>
+  <img src="assets/LogoArkansas.jpg" class="uni">
+</section>
+
+<section id="map" class="s">
+  <header>
+    <div class="hdr-btns">
+      <button class="mini" id="bhome" title="Ir a inicio.html">🏠</button>
+      <button class="mini" id="bhelp">❓</button>
+    </div>
+    <span>TEMPORADA</span>
+    <span class="en"></span>
+  </header>
+  <div id="scroll"><div id="field"></div></div>
+</section>
+
+<section id="vs" class="s">
+  <div class="vsb">
+    <div><img src="assets/LogoRedwolfs.png"><b>RED WOLVES</b></div>
+    <em>VS</em>
+    <div><div class="rv">🏈</div><b id="rn"></b></div>
+  </div>
+  <p id="vy"></p><small>toca para saltar</small>
+</section>
+
+<section id="game" class="s">
+  <header>
+    <div class="hdr-btns">
+      <button class="mini" id="bm">🗺️</button>
+      <button class="mini" id="bghelp">❓</button>
+    </div>
+    <span id="ys"></span>
+    <span class="en"></span>
+  </header>
+  <canvas id="view" width="640" height="220"></canvas>
+  <div id="obj"></div><div id="mv"></div>
+  <div id="board"></div>
+</section>
+
+<!-- POPUP DE MECÁNICAS DE JUEGO -->
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <h2>MECÁNICAS DEL JUEGO</h2>
+    
+    <h3>🏉 REGLAS BÁSICAS</h3>
+    <p>• junta 3 o más fichas iguales para despejarlas y avanzar yardas.</p>
+    <p>• <b>Bloque Amarillo (⭐):</b> Se puede mover siempre y cuando su movimiento provoque una combinación o interacción.</p>
+    <p>• <b>Escudo (🛡️):</b> Las fichas congeladas no se pueden mover hasta romper el escudo combinando fichas adyacentes.</p>
+
+    <h3>🔥 PODERES ESPECIALES</h3>
+    <p>• <b>4 en línea:</b> Pase Bala (destruye fila o columna).</p>
+    <p>• <b>Forma de T / L:</b> Captura (explosión en área).</p>
+    <p>• <b>Cuadrado 2x2:</b> Balón en llamas (ataca fichas aleatorias del tablero).</p>
+    <p>• <b>5 en línea:</b> Rugido Red Wolf (elimina todas las fichas de un mismo tipo).</p>
+
+    <h3>⚡ ACTIVACIÓN Y COMBOS</h3>
+    <p>• <b>Doble toque / Clic:</b> Activa el poder inmediatamente en su posición.</p>
+    <p>• <b>Mezclar 2 poderes iguales:</b> Se activan con el <b>doble de potencia</b>.</p>
+    <p>• <b>Mezclar 2 poderes diferentes:</b> Desencadena una súper combinación combinando ambos efectos.</p>
+
+    <button class="btn" id="closeHelp">¡A JUGAR!</button>
+  </div>
+</div>
+
+<div id="fx"></div>
+<div id="end"><div><h2 id="et"></h2><p id="es"></p><div id="st"></div><button class="btn" id="b1"></button><button class="btn alt" id="b2">MAPA</button></div></div>
+<div id="toast"></div>
+<script src="game.js"></script>
+</body></html>

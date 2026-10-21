@@ -1,0 +1,94 @@
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+:root{--r:#c8102e}
+html, body, #board, .tile, button { touch-action: manipulation; }
+body{font-family:Impact,'Arial Narrow',sans-serif;background:#111;color:#fff;height:100dvh;overflow:hidden;user-select:none;-webkit-user-select:none}
+.s{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(circle at 50% 30%,#3a0a12,#111 70%);text-align:center}
+.s.on{display:flex}
+.lg{width:90px}.big{width:min(55vw,250px);filter:drop-shadow(0 0 20px #c8102e)}
+h1{font-size:clamp(38px,11vw,70px);letter-spacing:2px;line-height:1}
+h1 span{color:var(--r);-webkit-text-stroke:2px #fff}
+.btn{background:var(--r);color:#fff;border:3px solid #fff;border-radius:12px;padding:12px 38px;font:inherit;font-size:24px;cursor:pointer;box-shadow:0 5px 0 #6d0a1a;margin:4px}
+.btn:active{transform:translateY(4px);box-shadow:none}.alt{background:#222;box-shadow:0 5px 0 #000}
+.bar{width:min(70vw,320px);height:16px;border:2px solid #fff;border-radius:9px;overflow:hidden}
+.bar b{display:block;height:100%;width:0;background:var(--r);transition:width .3s}
+.uni{width:150px;border-radius:10px}
+header{position:absolute;top:0;left:0;right:0;height:44px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;background:#000d;z-index:5;font-size:15px}
+.mini{background:#222;border:2px solid #fff;color:#fff;border-radius:8px;font-size:18px;padding:2px 10px;cursor:pointer}
+.hdr-btns{display:flex;gap:6px;align-items:center}
+.en i{opacity:.25;font-style:normal}
+
+/* Mapa */
+#scroll{position:absolute;inset:44px 0 0;overflow-y:auto}
+#field{position:relative;height:1300px;width:min(100%,520px);margin:0 auto;border:4px solid #fff;border-top:0;
+ background:linear-gradient(#c8102e 0 130px,transparent 130px),repeating-linear-gradient(#2f9e44 0 117px,#37b24d 117px 234px);background-position:0 0,0 130px}
+.yl{position:absolute;left:0;right:0;border-top:3px solid #fffb}
+.yl i{position:absolute;left:8px;top:2px;font-style:normal;font-size:24px;color:#fff9}
+.ez{position:absolute;top:0;left:0;right:0;height:10%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:32px;letter-spacing:6px;border-bottom:4px solid #fff}
+.ez small{font-size:12px;letter-spacing:2px}
+.node{position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;border:4px solid #fff;font:inherit;font-size:24px;color:#fff;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;cursor:pointer}
+.node small{font-size:11px;margin-top:2px}
+.cur{background:var(--r);animation:pl .8s infinite alternate}.done{background:#087f23}.lock{opacity:.5;filter:grayscale(1)}
+@keyframes pl{to{transform:translate(-50%,-50%) scale(1.15)}}
+
+/* Versus */
+#vs{background:linear-gradient(#000a,#000d),url(assets/VS.jpg) center/cover}
+.vsb{display:flex;align-items:center;gap:14px;font-size:20px}
+.vsb>div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.vsb img,.rv{width:min(30vw,130px)}
+.rv{aspect-ratio:1;border-radius:50%;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-size:60px}
+em{font-size:56px;color:var(--r);-webkit-text-stroke:2px #fff;font-style:normal}
+
+/* Juego */
+#game{justify-content:flex-start;gap:8px;padding-top:44px}
+#view{width:min(100%,560px);aspect-ratio:640/220;border-bottom:3px solid var(--r)}
+#obj{min-height:34px}#mv{font-size:18px}
+.chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:14px;font-size:18px;margin:0 3px;background:#333;border:2px solid #fff}
+
+/* TAMAÑOS DE IMÁGENES */
+.chip img { width: 22px; height: 22px; margin-right: 4px; object-fit: contain; }
+.tile img { width: 75%; height: 75%; object-fit: contain; pointer-events: none; }
+
+#board{position:relative;width:min(94vw,46vh,440px);aspect-ratio:1;background:#0009;border:3px solid #fff;border-radius:10px;touch-action:none}
+.tile{position:absolute;width:14.2857%;height:14.2857%;display:flex;align-items:center;justify-content:center;font-size:clamp(20px,6.4vw,32px);transition:left .22s,top .26s ease-in;border:2px solid transparent;background-clip:padding-box;border-radius:30%}
+.t0{background:#8a4b1f}.t1{background:#c8102e}.t2{background:#eee}.t3{background:#2b2b2b}.t4{background:#666}.t5{background:#3a86ff}
+.chip.t2{color:#111}
+.td{background:gold;box-shadow:0 0 12px gold;animation:bn .6s infinite alternate}
+@keyframes bn{to{transform:scale(.9)}}
+.pop{transform:scale(0);opacity:0;transition:transform .2s,opacity .2s}
+.sel{outline:3px solid gold;z-index:2;transform:scale(1.1)}
+.s-r::after,.s-c::after,.s-x::after{position:absolute;right:0;bottom:-2px;font-size:.5em}
+.s-r::after{content:'🔥↔'}.s-c::after{content:'🔥↕'}.s-x::after{content:'💥'}
+
+/* PODER RUGIDO RED WOLF (5 en línea): Oculta la imagen original */
+.s-z{background:#fff url(assets/LogoRedwolfs.png) center/78% no-repeat!important;font-size:0;box-shadow:0 0 0 3px gold,0 0 14px gold}
+.s-z img { display: none !important; }
+
+/* Animación del balón en llamas */
+.s-f{box-shadow: 0 0 15px red, 0 0 5px orange;animation: fuego 1s infinite alternate;}
+@keyframes fuego{to{transform: scale(1.1); box-shadow: 0 0 25px red, 0 0 10px yellow;}}
+
+.ice{position:absolute;width:14.2857%;height:14.2857%;pointer-events:none;display:none;border:2px solid #cdf;border-radius:8px;z-index:3}
+.ice.h1{display:block;background:#7fd8ff77}.ice.h2{display:block;background:#2b8fcfbb}
+#game.sh{animation:sh .35s}
+@keyframes sh{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,2px)}}
+
+/* Mensajes y pantallas */
+#fx{position:fixed;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;z-index:9}
+.fl{position:absolute;font-size:clamp(30px,10vw,62px);color:#fff;-webkit-text-stroke:2px var(--r);text-shadow:0 4px 0 #000;animation:fl 1.1s forwards;text-align:center}
+@keyframes fl{0%{transform:scale(.3);opacity:0}20%{transform:scale(1.2);opacity:1}100%{transform:translateY(-90px) scale(1);opacity:0}}
+#end{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:20;text-align:center}
+#end.on{display:flex}
+#end>div{background:#1a1a1a;border:4px solid #fff;border-radius:16px;padding:24px;max-width:90vw}
+#end h2{font-size:34px;color:var(--r);-webkit-text-stroke:1px #fff}#end p{margin:8px 0;font-family:Arial;font-size:15px}
+#st{font-size:44px;color:gold;margin:6px}
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#000;border:2px solid #fff;border-radius:10px;padding:10px 18px;opacity:0;transition:opacity .3s;z-index:30;pointer-events:none}
+#toast.on{opacity:1}
+
+/* POPUP DE MECÁNICAS */
+.modal{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:50;text-align:left}
+.modal.on{display:flex}
+.modal-content{background:#1a1a1a;border:4px solid #fff;border-radius:16px;padding:20px;max-width:90vw;max-height:85vh;overflow-y:auto;color:#fff;box-shadow:0 0 25px var(--r)}
+.modal-content h2{font-size:28px;color:var(--r);text-align:center;margin-bottom:12px;-webkit-text-stroke:1px #fff}
+.modal-content h3{font-size:18px;color:gold;margin-top:14px;border-bottom:1px solid #444;padding-bottom:4px}
+.modal-content p{font-family:Arial,sans-serif;font-size:14px;margin:6px 0;line-height:1.4;color:#ddd}
+.modal-content .btn{display:block;margin:18px auto 0;font-size:20px;padding:8px 26px}

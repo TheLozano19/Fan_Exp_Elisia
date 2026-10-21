@@ -298,5 +298,4 @@ function initRadarCharts() {
     options: commonRadarOptions
   });
 }
-//contraseña para la base de datos en supabase 
-//LOsRedWolvessirifan_Espero 
+
