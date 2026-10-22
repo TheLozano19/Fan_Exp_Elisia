@@ -68,6 +68,7 @@
         <button class="btn-menu" onclick="showScreen('photos-screen')">Ver fotos de las jornadas deportivas</button>
         <button class="btn-menu" onclick="showScreen('stats-screen')">Estadísticas del equipo y jugadores</button>
         <button class="btn-menu" onclick="showScreen('roster-screen')">Revisar el roster de jugadores</button>
+        
       </div>
 <a href="juegos/juego.html" class="btn-restart" target="_blank">Prueba el Juego</a>
       <a href="https://www.instagram.com/arkansasstatemx/" class="btn-restart" target="_blank">Síguenos en Instagram</a>
@@ -253,8 +254,27 @@
       </ul>
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
-
   </div>
+  <!-- Modal de Valoración -->
+<div id="feedback-modal" class="modal-overlay hidden">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+    <h2>¡Valora tu experiencia!</h2>
+    <p>Déjanos saber qué opinas de nuestra página:</p>
+    
+    <div class="rating-stars">
+      <span onclick="setRating(1)">★</span>
+      <span onclick="setRating(2)">★</span>
+      <span onclick="setRating(3)">★</span>
+      <span onclick="setRating(4)">★</span>
+      <span onclick="setRating(5)">★</span>
+    </div>
+
+    <textarea id="feedback-comment" placeholder="Escribe tu comentario aquí (opcional)..." rows="4"></textarea>
+    
+    <button class="btn-start" onclick="submitFeedback()">Enviar Valoración</button>
+  </div>
+</div>
 
   <!-- Librerías Externas -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

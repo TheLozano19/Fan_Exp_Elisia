@@ -58,6 +58,18 @@ function showScreen(screenId) {
     initRadarCharts();
     chartsInitialized = true;
   }
+
+  // Abrir el modal automáticamente tras entrar a cualquier opción (solo una vez)
+  const optionScreens = ['photos-screen', 'stats-screen', 'roster-screen'];
+  const feedbackShown = localStorage.getItem('rw_feedback_shown');
+
+  if (optionScreens.includes(screenId) && !feedbackShown) {
+    // Espera 1 segundo para permitir ver el contenido antes de mostrar el pop-up
+    setTimeout(() => {
+      openFeedbackModal();
+      localStorage.setItem('rw_feedback_shown', 'true');
+    }, 1000);
+  }
 }
 
 function handleRegister(event) {
@@ -85,6 +97,7 @@ function resetSession() {
   localStorage.removeItem('rw_user');
   localStorage.removeItem('rw_completed');
   localStorage.removeItem('rw_score');
+  localStorage.removeItem('rw_feedback_shown');
   currentUser = null;
   showScreen('auth-screen');
 }
@@ -210,6 +223,7 @@ async function showResults() {
   // Marcar como completado y guardar puntaje en el navegador
   localStorage.setItem('rw_completed', 'true');
   localStorage.setItem('rw_score', score.toString());
+  
 
   if (currentUser) {
     try {
@@ -263,14 +277,14 @@ function initRadarCharts() {
       datasets: [
         {
           label: 'Fernando Escalona (#14)',
-          data: [54, 100, 68.4, 100, 87.5], // 54% efect, 296 yd pase, 80 yd acarreo, 2 TD, 7 1st Downs
+          data: [54, 100, 68.4, 100, 87.5],
           backgroundColor: 'rgba(54, 162, 235, 0.4)',
           borderColor: 'rgba(54, 162, 235, 1)',
           pointBackgroundColor: 'rgba(54, 162, 235, 1)'
         },
         {
           label: 'Iker Muñoz (#9)',
-          data: [38, 100, 100, 50, 100], // 38% efect, 296 yd pase, 117 yd acarreo, 1 TD, 8 1st Downs
+          data: [38, 100, 100, 50, 100],
           backgroundColor: 'rgba(227, 24, 55, 0.4)',
           borderColor: 'rgba(227, 24, 55, 1)',
           pointBackgroundColor: 'rgba(227, 24, 55, 1)'
@@ -288,14 +302,14 @@ function initRadarCharts() {
       datasets: [
         {
           label: 'Moisés Díaz (#20)',
-          data: [100, 100, 92.6, 100], // 14 acarreos, 63 yd, 4.50 yd/prom, 2 TD
+          data: [100, 100, 92.6, 100],
           backgroundColor: 'rgba(40, 167, 69, 0.4)',
           borderColor: 'rgba(40, 167, 69, 1)',
           pointBackgroundColor: 'rgba(40, 167, 69, 1)'
         },
         {
           label: 'Emiliano Hernández (#32)',
-          data: [50, 54, 100, 0], // 7 acarreos, 34 yd, 4.86 yd/prom, 0 TD
+          data: [50, 54, 100, 0],
           backgroundColor: 'rgba(255, 193, 7, 0.4)',
           borderColor: 'rgba(255, 193, 7, 1)',
           pointBackgroundColor: 'rgba(255, 193, 7, 1)'
@@ -313,28 +327,28 @@ function initRadarCharts() {
       datasets: [
         {
           label: 'Genaro Flores (#0)',
-          data: [81.8, 75.4, 35.9, 0], // 9 rec, 95 yd, 7.8 prom, 0 TD
+          data: [81.8, 75.4, 35.9, 0],
           backgroundColor: 'rgba(153, 102, 255, 0.4)',
           borderColor: 'rgba(153, 102, 255, 1)',
           pointBackgroundColor: 'rgba(153, 102, 255, 1)'
         },
         {
           label: 'André Vergara (#18)',
-          data: [100, 100, 53.0, 0], // 11 rec, 126 yd, 11.5 prom, 0 TD
+          data: [100, 100, 53.0, 0],
           backgroundColor: 'rgba(255, 159, 64, 0.4)',
           borderColor: 'rgba(255, 159, 64, 1)',
           pointBackgroundColor: 'rgba(255, 159, 64, 1)'
         },
         {
           label: 'Sigfrido López (#6)',
-          data: [90.9, 85.7, 49.8, 100], // 10 rec, 108 yd, 10.8 prom, 2 TD
+          data: [90.9, 85.7, 49.8, 100],
           backgroundColor: 'rgba(75, 192, 192, 0.4)',
           borderColor: 'rgba(75, 192, 192, 1)',
           pointBackgroundColor: 'rgba(75, 192, 192, 1)'
         },
         {
           label: 'Santiago Vargas (#19)',
-          data: [0, 0, 100, 0], // 0 rec (retornos), 65 yd ret, 21.7 prom
+          data: [0, 0, 100, 0],
           backgroundColor: 'rgba(201, 203, 207, 0.4)',
           borderColor: 'rgba(201, 203, 207, 1)',
           pointBackgroundColor: 'rgba(201, 203, 207, 1)'
@@ -352,28 +366,28 @@ function initRadarCharts() {
       datasets: [
         {
           label: 'Emilio Salvador (#28)',
-          data: [100, 0, 100, 0], // 20 tck, 0 cap, 3 int, 0 fum
+          data: [100, 0, 100, 0],
           backgroundColor: 'rgba(255, 99, 132, 0.4)',
           borderColor: 'rgba(255, 99, 132, 1)',
           pointBackgroundColor: 'rgba(255, 99, 132, 1)'
         },
         {
           label: 'Santiago Cerezo (#34)',
-          data: [75, 0, 66.7, 100], // 15 tck, 0 cap, 2 int, 1 fum
+          data: [75, 0, 66.7, 100],
           backgroundColor: 'rgba(54, 162, 235, 0.4)',
           borderColor: 'rgba(54, 162, 235, 1)',
           pointBackgroundColor: 'rgba(54, 162, 235, 1)'
         },
         {
           label: 'Elian García (#17)',
-          data: [85, 100, 0, 0], // 17 tck, 1 cap, 0 int, 0 fum
+          data: [85, 100, 0, 0],
           backgroundColor: 'rgba(255, 206, 86, 0.4)',
           borderColor: 'rgba(255, 206, 86, 1)',
           pointBackgroundColor: 'rgba(255, 206, 86, 1)'
         },
         {
           label: 'Gael Amador (#21)',
-          data: [80, 100, 33.3, 100], // 16 tck, 1 cap, 1 int, 1 fum
+          data: [80, 100, 33.3, 100],
           backgroundColor: 'rgba(75, 192, 192, 0.4)',
           borderColor: 'rgba(75, 192, 192, 1)',
           pointBackgroundColor: 'rgba(75, 192, 192, 1)'
@@ -382,5 +396,69 @@ function initRadarCharts() {
     },
     options: commonRadarOptions
   });
+}
 
+// --- LÓGICA DEL MODAL DE VALORACIÓN ---
+let currentRating = 0;
+
+// Abrir y cerrar el modal
+function openFeedbackModal() {
+  document.getElementById('feedback-modal').classList.remove('hidden');
+}
+
+function closeFeedbackModal() {
+  document.getElementById('feedback-modal').classList.add('hidden');
+  resetFeedbackForm();
+}
+
+// Manejar la selección de estrellas
+function setRating(rating) {
+  currentRating = rating;
+  const stars = document.querySelectorAll('.rating-stars span');
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+}
+
+// Resetear el formulario
+function resetFeedbackForm() {
+  currentRating = 0;
+  const commentInput = document.getElementById('feedback-comment');
+  if (commentInput) commentInput.value = '';
+  const stars = document.querySelectorAll('.rating-stars span');
+  stars.forEach(star => star.classList.remove('active'));
+}
+
+// Enviar la valoración a Supabase
+async function submitFeedback() {
+  const commentInput = document.getElementById('feedback-comment');
+  const comment = commentInput ? commentInput.value.trim() : '';
+
+  if (currentRating === 0) {
+    alert('Por favor selecciona al menos una estrella para valorar.');
+    return;
+  }
+
+  try {
+    const { data, error } = await supabaseClient.from('feedback').insert([
+      {
+        rating: currentRating,
+        comment: comment,
+        user_name: currentUser ? currentUser.name : 'Anónimo',
+        user_email: currentUser ? currentUser.email : null
+      }
+    ]);
+
+    if (error) throw error;
+
+    alert('¡Muchas gracias por tus comentarios!');
+    closeFeedbackModal();
+  } catch (error) {
+    console.error('Error al guardar la valoración:', error.message);
+    alert('Hubo un error al guardar tu opinión. Inténtalo de nuevo.');
+  }
 }
