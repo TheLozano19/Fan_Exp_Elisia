@@ -115,26 +115,44 @@
         <p><strong>Promedio Yardas por Juego:</strong> 107.2 Ganadas / 195.3 Permitidas</p>
       </div>
 
-      <div class="charts-grid">
-        <div class="chart-card">
-          <h3>Comparativa Quarterbacks</h3>
-          <div class="chart-container">
-            <canvas id="qbChart"></canvas>
-          </div>
-        </div>
-        <div class="chart-card">
-          <h3>Rendimiento de Corredores</h3>
-          <div class="chart-container">
-            <canvas id="rbChart"></canvas>
-          </div>
-        </div>
-        <div class="chart-card">
-          <h3>Líderes Defensivos</h3>
-          <div class="chart-container">
-            <canvas id="defChart"></canvas>
-          </div>
-        </div>
+      HTML
+<div class="stats-container">
+  <div class="charts-grid">
+    
+    <!-- 1. Gráfica Quarterbacks -->
+    <div class="chart-card">
+      <h3>Quarterbacks (Pase y Tierra)</h3>
+      <div class="chart-container">
+        <canvas id="qbChart"></canvas>
       </div>
+    </div>
+
+    <!-- 2. Gráfica Corredores -->
+    <div class="chart-card">
+      <h3>Corredores (Aporte Terrestre)</h3>
+      <div class="chart-container">
+        <canvas id="rbChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 3. Gráfica Receptores -->
+    <div class="chart-card">
+      <h3>Receptores (Volumen, Eficiencia y Explosividad)</h3>
+      <div class="chart-container">
+        <canvas id="wrChart"></canvas>
+      </div>
+    </div>
+
+    <!-- 4. Gráfica Defensiva -->
+    <div class="chart-card">
+      <h3>Líderes Defensivos</h3>
+      <div class="chart-container">
+        <canvas id="defChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
 
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>

@@ -92,10 +92,10 @@ body {
 }
 
 /* Colores Kahoot */
-.opt-0 { background-color: #e21b3c; }
+.opt-0 { background-color: #cc06d3; }
 .opt-1 { background-color: #1368ce; }
 .opt-2 { background-color: #d89e00; }
-.opt-3 { background-color: #26890c; }
+.opt-3 { background-color: #6c4cc4; }
 
 .correct { background-color: #26890c !important; }
 .incorrect { background-color: #e21b3c !important; opacity: 0.5; }
@@ -240,12 +240,15 @@ body {
   border: 1px solid #333333;
   border-radius: 12px;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .chart-card h3 {
   color: #ffffff;
   font-size: 1rem;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .chart-container {

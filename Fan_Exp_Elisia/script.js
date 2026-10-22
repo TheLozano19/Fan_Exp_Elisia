@@ -255,79 +255,125 @@ function initRadarCharts() {
     }
   };
 
-  // 1. Gráfica de Quarterbacks
+  // 1. Gráfica de Quarterbacks (Pase y Tierra)
   new Chart(document.getElementById('qbChart').getContext('2d'), {
     type: 'radar',
     data: {
-      labels: ['% Completados', 'Yardas por Aire', 'Eficiencia', 'Cuidado de Balón', 'Protección'],
+      labels: ['% Efectividad', 'Yardas Pase', 'Yardas Acarreo', 'Touchdowns (Pase)', 'Primeros Downs'],
       datasets: [
         {
-          label: 'Iker Muñoz (#09)',
-          data: [45.5, 100, 64.6, 50, 20],
-          backgroundColor: 'rgba(227, 24, 55, 0.4)',
-          borderColor: 'rgba(227, 24, 55, 1)',
-          pointBackgroundColor: 'rgba(227, 24, 55, 1)'
-        },
-        {
-          label: 'Fernando Escalona',
-          data: [58.3, 75.7, 100, 100, 100],
+          label: 'Fernando Escalona (#14)',
+          data: [54, 100, 68.4, 100, 87.5], // 54% efect, 296 yd pase, 80 yd acarreo, 2 TD, 7 1st Downs
           backgroundColor: 'rgba(54, 162, 235, 0.4)',
           borderColor: 'rgba(54, 162, 235, 1)',
           pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+        },
+        {
+          label: 'Iker Muñoz (#9)',
+          data: [38, 100, 100, 50, 100], // 38% efect, 296 yd pase, 117 yd acarreo, 1 TD, 8 1st Downs
+          backgroundColor: 'rgba(227, 24, 55, 0.4)',
+          borderColor: 'rgba(227, 24, 55, 1)',
+          pointBackgroundColor: 'rgba(227, 24, 55, 1)'
         }
       ]
     },
     options: commonRadarOptions
   });
 
-  // 2. Gráfica de Corredores
+  // 2. Gráfica de Corredores (Aporte Terrestre)
   new Chart(document.getElementById('rbChart').getContext('2d'), {
     type: 'radar',
     data: {
-      labels: ['Acarreos', 'Yardas Totales', 'Promedio yd/acarreo', 'Efectividad'],
+      labels: ['Acarreos', 'Yardas', 'Promedio yd/acarreo', 'Touchdowns'],
       datasets: [
         {
-          label: 'Fernando Escalona',
-          data: [94.5, 100, 100, 90],
+          label: 'Moisés Díaz (#20)',
+          data: [100, 100, 92.6, 100], // 14 acarreos, 63 yd, 4.50 yd/prom, 2 TD
           backgroundColor: 'rgba(40, 167, 69, 0.4)',
           borderColor: 'rgba(40, 167, 69, 1)',
           pointBackgroundColor: 'rgba(40, 167, 69, 1)'
         },
         {
-          label: 'Iker Muñoz',
-          data: [100, 97.7, 92.5, 85],
+          label: 'Emiliano Hernández (#32)',
+          data: [50, 54, 100, 0], // 7 acarreos, 34 yd, 4.86 yd/prom, 0 TD
           backgroundColor: 'rgba(255, 193, 7, 0.4)',
           borderColor: 'rgba(255, 193, 7, 1)',
           pointBackgroundColor: 'rgba(255, 193, 7, 1)'
-        },
-        {
-          label: 'Genaro Flores',
-          data: [32.4, 22.8, 66.5, 50],
-          backgroundColor: 'rgba(153, 102, 255, 0.4)',
-          borderColor: 'rgba(153, 102, 255, 1)',
-          pointBackgroundColor: 'rgba(153, 102, 255, 1)'
         }
       ]
     },
     options: commonRadarOptions
   });
 
-  // 3. Gráfica Defensiva
+  // 3. Gráfica de Receptores (Volumen, Eficiencia y Explosividad)
+  new Chart(document.getElementById('wrChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: ['Recepciones', 'Yardas Recibidas', 'Promedio yd/rec', 'Touchdowns'],
+      datasets: [
+        {
+          label: 'Genaro Flores (#0)',
+          data: [81.8, 75.4, 35.9, 0], // 9 rec, 95 yd, 7.8 prom, 0 TD
+          backgroundColor: 'rgba(153, 102, 255, 0.4)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          pointBackgroundColor: 'rgba(153, 102, 255, 1)'
+        },
+        {
+          label: 'André Vergara (#18)',
+          data: [100, 100, 53.0, 0], // 11 rec, 126 yd, 11.5 prom, 0 TD
+          backgroundColor: 'rgba(255, 159, 64, 0.4)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          pointBackgroundColor: 'rgba(255, 159, 64, 1)'
+        },
+        {
+          label: 'Sigfrido López (#6)',
+          data: [90.9, 85.7, 49.8, 100], // 10 rec, 108 yd, 10.8 prom, 2 TD
+          backgroundColor: 'rgba(75, 192, 192, 0.4)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+        },
+        {
+          label: 'Santiago Vargas (#19)',
+          data: [0, 0, 100, 0], // 0 rec (retornos), 65 yd ret, 21.7 prom
+          backgroundColor: 'rgba(201, 203, 207, 0.4)',
+          borderColor: 'rgba(201, 203, 207, 1)',
+          pointBackgroundColor: 'rgba(201, 203, 207, 1)'
+        }
+      ]
+    },
+    options: commonRadarOptions
+  });
+
+  // 4. Gráfica Defensiva (Líderes Defensivos)
   new Chart(document.getElementById('defChart').getContext('2d'), {
     type: 'radar',
     data: {
-      labels: ['Tacleadas', 'Intercepciones', 'Yardas Regreso', 'Impacto'],
+      labels: ['Tackleadas', 'Capturas', 'Intercepciones', 'Fumbles Rec.'],
       datasets: [
         {
-          label: 'Gael Amador (#21)',
-          data: [100, 50, 61.5, 85],
+          label: 'Emilio Salvador (#28)',
+          data: [100, 0, 100, 0], // 20 tck, 0 cap, 3 int, 0 fum
           backgroundColor: 'rgba(255, 99, 132, 0.4)',
           borderColor: 'rgba(255, 99, 132, 1)',
           pointBackgroundColor: 'rgba(255, 99, 132, 1)'
         },
         {
           label: 'Santiago Cerezo (#34)',
-          data: [93.7, 100, 0, 90],
+          data: [75, 0, 66.7, 100], // 15 tck, 0 cap, 2 int, 1 fum
+          backgroundColor: 'rgba(54, 162, 235, 0.4)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+        },
+        {
+          label: 'Elian García (#17)',
+          data: [85, 100, 0, 0], // 17 tck, 1 cap, 0 int, 0 fum
+          backgroundColor: 'rgba(255, 206, 86, 0.4)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          pointBackgroundColor: 'rgba(255, 206, 86, 1)'
+        },
+        {
+          label: 'Gael Amador (#21)',
+          data: [80, 100, 33.3, 100], // 16 tck, 1 cap, 1 int, 1 fum
           backgroundColor: 'rgba(75, 192, 192, 0.4)',
           borderColor: 'rgba(75, 192, 192, 1)',
           pointBackgroundColor: 'rgba(75, 192, 192, 1)'
@@ -336,4 +382,5 @@ function initRadarCharts() {
     },
     options: commonRadarOptions
   });
+
 }
