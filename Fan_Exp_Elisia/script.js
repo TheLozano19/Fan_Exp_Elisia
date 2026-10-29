@@ -16,13 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     currentUser = JSON.parse(savedUser);
 
     if (savedCompleted === 'true') {
-      // Si ya completó la trivia, lo enviamos directo a los resultados
       score = parseInt(savedScore || '0', 10);
       const maxPossibleScore = TOTAL_QUESTIONS * MAX_POINTS_PER_QUESTION;
       document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
       showScreen('result-screen');
     } else {
-      // Si solo completó el registro pero no ha hecho la trivia
       document.getElementById('welcome-message').textContent = `Hola de nuevo, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
       showScreen('start-screen');
     }
@@ -53,18 +51,17 @@ function showScreen(screenId) {
     targetScreen.classList.remove('hidden');
   }
 
-  // Si se abre la pantalla de estadísticas, renderizar las gráficas de estrella
+  // Renderizar gráficas cuando se ingrese a estadísticas
   if (screenId === 'stats-screen' && !chartsInitialized) {
     initRadarCharts();
     chartsInitialized = true;
   }
 
-  // Abrir el modal automáticamente tras entrar a cualquier opción (solo una vez)
+  // Pop-up de valoración automático tras ingresar a una sección por primera vez
   const optionScreens = ['photos-screen', 'stats-screen', 'roster-screen'];
   const feedbackShown = localStorage.getItem('rw_feedback_shown');
 
   if (optionScreens.includes(screenId) && !feedbackShown) {
-    // Espera 1 segundo para permitir ver el contenido antes de mostrar el pop-up
     setTimeout(() => {
       openFeedbackModal();
       localStorage.setItem('rw_feedback_shown', 'true');
@@ -85,14 +82,12 @@ function handleRegister(event) {
     social: social || 'N/A'
   };
 
-  // Guardar datos del registro en localStorage
   localStorage.setItem('rw_user', JSON.stringify(currentUser));
 
   showScreen('start-screen');
   document.getElementById('welcome-message').textContent = `Hola, ${currentUser.name}. ¡Demuestra tus conocimientos!`;
 }
 
-// Función opcional por si deseas permitir que cambien de usuario o reinicien el registro
 function resetSession() {
   localStorage.removeItem('rw_user');
   localStorage.removeItem('rw_completed');
@@ -112,6 +107,21 @@ const questionBank = [
   { question: "¿Cuánto dura cada uno de los cuatro cuartos en un partido reglamentario de la NFL?", options: ["10 minutos", "12 minutos", "15 minutos", "20 minutos"], correct: 2 },
   { question: "¿Cómo se llama la línea imaginaria que separa a la ofensiva de la defensiva antes de que comience una jugada?", options: ["Línea de Touchback", "Línea de Ensayo", "Línea de Scrimmage ", "Línea de Goal"], correct: 2 },
   { question: "¿Cómo se llama el trofeo que se le entrega al campeón del Super Bowl?", options: ["Vince Lombardi", "Walter Payton", "Lamar Hunt", "George Halas"], correct: 0 },
+  { question: "¿Cómo se llama la jugada en la que un jugador defensivo taclea al Quarterback detrás de la línea de scrimmage antes de que pase o corra?", options: ["Intercepción", "Sack", "Safety", "Fumble"], correct: 1 },
+  { question: "¿Cuántos puntos vale una conversión de dos puntos (2-point conversion) tras un Touchdown?", options: ["1 punto", "2 puntos", "3 puntos", "6 puntos"], correct: 1 },
+  { question: "¿Cómo se denomina la zona de 10 yardas en cada extremo del campo donde se anotan los Touchdowns?", options: ["Red Zone", "End Zone", "Neutral Zone", "Goal Zone"], correct: 1 },
+  { question: "¿Cómo se llama la jugada en la que el balón se patea hacia adelante en cuarta oportunidad para entregar la posesión al rival?", options: ["Kickoff", "Punt (Despeje)", "Field Goal", "Onside Kick"], correct: 1 },
+  { question: "¿Qué ocurre cuando a un jugador ofensivo se le cae el balón vivo antes de ser derribado y cualquier equipo puede recuperarlo?", options: ["Incompleto", "Intercepción", "Fumble", "Offside"], correct: 2 },
+  { question: "¿Cuántos puntos consigue la defensiva al anotar un Safety (taclear al rival dentro de su propia zona de anotación)?", options: ["2 puntos", "3 puntos", "6 puntos", "1 punto"], correct: 0 },
+  { question: "¿Cómo se le llama al pase largo y desesperado de último segundo hacia la End Zone?", options: ["Pick Six", "Screen Pass", "Hail Mary", "Trick Play"], correct: 2 },
+  { question: "¿Qué posición de la línea ofensiva es la encargada de centrar el balón (hacer el snap) al Quarterback?", options: ["Guard", "Tackle", "Center", "Tight End"], correct: 2 },
+  { question: "¿Cuántas yardas de castigo se otorgan generalmente por una falta de 'Sujetando' (Holding) de la ofensiva?", options: ["5 yardas", "10 yardas", "15 yardas", "20 yardas"], correct: 1 },
+  { question: "¿Cómo se llama la jugada inicial con la que comienza cada mitad del partido o se reanuda tras una anotación?", options: ["Punt", "Snap", "Kickoff", "Safety"], correct: 2 },
+  { question: "¿Qué sanción recibe la defensiva si un jugador cruza la línea de scrimmage antes de que el balón sea centrado?", options: ["Holding", "Offside (Fuera de lugar)", "Pass Interference", "Personal Foul"], correct: 1 },
+  { question: "¿Cómo se denomina cuando la defensiva intercepta un pase y lo regresa hasta la zona de anotación rival para hacer un Touchdown?", options: ["Pick Six", "Touchback", "Safety", "Fumble Recovery"], correct: 0 },
+  { question: "¿Cuál es el tiempo de posesión (reloj de jugada) que tiene la ofensiva para iniciar una jugada antes de ser penalizada por retraso de juego?", options: ["25 segundos", "30 segundos", "40 segundos", "45 segundos"], correct: 2 },
+  { question: "¿Cuántos puntos otorga el punto extra pateado (PAT - Extra Point) justo después de anotar un Touchdown?", options: ["1 punto", "2 puntos", "3 puntos", "0 puntos"], correct: 0 },
+  { question: "¿Cómo se llama el área del campo comprendida entre la línea de la yarda 20 y la zona de anotación (End Zone)?", options: ["No-Fly Zone", "Red Zone", "Comfort Zone", "Green Zone"], correct: 1 },
 ];
 
 const TOTAL_QUESTIONS = 7;
@@ -220,12 +230,10 @@ async function showResults() {
   showScreen('result-screen');
   document.getElementById('score-text').textContent = `Obtuviste ${score} de ${maxPossibleScore} puntos posibles.`;
 
-  // Marcar como completado y guardar puntaje en el navegador
   localStorage.setItem('rw_completed', 'true');
   localStorage.setItem('rw_score', score.toString());
   
-
-  if (currentUser) {
+  if (currentUser && typeof supabaseClient !== 'undefined') {
     try {
       const { data, error } = await supabaseClient
         .from('scores')
@@ -238,38 +246,40 @@ async function showResults() {
           }
         ]);
 
-      if (error) {
-        console.error('Error de Supabase:', error.message);
-      } else {
-        console.log('¡Guardado en la base de datos con éxito!');
-      }
+      if (error) console.error('Error de Supabase:', error.message);
     } catch (err) {
       console.error('Error de conexión:', err);
     }
   }
 }
 
-// Inicialización de Gráficas de Radar
+// Inicialización de Gráficas de Radar con estilos oscuros optimizados
 function initRadarCharts() {
   const commonRadarOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       r: {
-        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
-        grid: { color: 'rgba(255, 255, 255, 0.2)' },
-        pointLabels: { color: '#ffffff', font: { size: 10 } },
+        angleLines: { color: 'rgba(255, 255, 255, 0.15)' },
+        grid: { color: 'rgba(255, 255, 255, 0.15)' },
+        pointLabels: { 
+          color: '#e0e0e0', 
+          font: { size: 10, weight: 'bold' } 
+        },
         suggestedMin: 0,
         suggestedMax: 100,
         ticks: { display: false }
       }
     },
     plugins: {
-      legend: { labels: { color: '#ffffff' }, position: 'bottom' }
+      legend: { 
+        labels: { color: '#ffffff', font: { size: 11 } }, 
+        position: 'bottom' 
+      }
     }
   };
 
-  // 1. Gráfica de Quarterbacks (Pase y Tierra)
+  // 1. Gráfica Quarterbacks
   new Chart(document.getElementById('qbChart').getContext('2d'), {
     type: 'radar',
     data: {
@@ -294,7 +304,7 @@ function initRadarCharts() {
     options: commonRadarOptions
   });
 
-  // 2. Gráfica de Corredores (Aporte Terrestre)
+  // 2. Gráfica Corredores
   new Chart(document.getElementById('rbChart').getContext('2d'), {
     type: 'radar',
     data: {
@@ -319,7 +329,7 @@ function initRadarCharts() {
     options: commonRadarOptions
   });
 
-  // 3. Gráfica de Receptores (Volumen, Eficiencia y Explosividad)
+  // 3. Gráfica Receptores
   new Chart(document.getElementById('wrChart').getContext('2d'), {
     type: 'radar',
     data: {
@@ -358,7 +368,7 @@ function initRadarCharts() {
     options: commonRadarOptions
   });
 
-  // 4. Gráfica Defensiva (Líderes Defensivos)
+  // 4. Gráfica Defensiva
   new Chart(document.getElementById('defChart').getContext('2d'), {
     type: 'radar',
     data: {
@@ -398,10 +408,9 @@ function initRadarCharts() {
   });
 }
 
-// --- LÓGICA DEL MODAL DE VALORACIÓN ---
+// LÓGICA DEL MODAL DE VALORACIÓN
 let currentRating = 0;
 
-// Abrir y cerrar el modal
 function openFeedbackModal() {
   document.getElementById('feedback-modal').classList.remove('hidden');
 }
@@ -411,7 +420,6 @@ function closeFeedbackModal() {
   resetFeedbackForm();
 }
 
-// Manejar la selección de estrellas
 function setRating(rating) {
   currentRating = rating;
   const stars = document.querySelectorAll('.rating-stars span');
@@ -424,7 +432,6 @@ function setRating(rating) {
   });
 }
 
-// Resetear el formulario
 function resetFeedbackForm() {
   currentRating = 0;
   const commentInput = document.getElementById('feedback-comment');
@@ -433,7 +440,6 @@ function resetFeedbackForm() {
   stars.forEach(star => star.classList.remove('active'));
 }
 
-// Enviar la valoración a Supabase
 async function submitFeedback() {
   const commentInput = document.getElementById('feedback-comment');
   const comment = commentInput ? commentInput.value.trim() : '';
@@ -443,22 +449,27 @@ async function submitFeedback() {
     return;
   }
 
-  try {
-    const { data, error } = await supabaseClient.from('feedback').insert([
-      {
-        rating: currentRating,
-        comment: comment,
-        user_name: currentUser ? currentUser.name : 'Anónimo',
-        user_email: currentUser ? currentUser.email : null
-      }
-    ]);
+  if (typeof supabaseClient !== 'undefined') {
+    try {
+      const { data, error } = await supabaseClient.from('feedback').insert([
+        {
+          rating: currentRating,
+          comment: comment,
+          user_name: currentUser ? currentUser.name : 'Anónimo',
+          user_email: currentUser ? currentUser.email : null
+        }
+      ]);
 
-    if (error) throw error;
+      if (error) throw error;
 
+      alert('¡Muchas gracias por tus comentarios!');
+      closeFeedbackModal();
+    } catch (error) {
+      console.error('Error al guardar la valoración:', error.message);
+      alert('Hubo un error al guardar tu opinión. Inténtalo de nuevo.');
+    }
+  } else {
     alert('¡Muchas gracias por tus comentarios!');
     closeFeedbackModal();
-  } catch (error) {
-    console.error('Error al guardar la valoración:', error.message);
-    alert('Hubo un error al guardar tu opinión. Inténtalo de nuevo.');
   }
 }

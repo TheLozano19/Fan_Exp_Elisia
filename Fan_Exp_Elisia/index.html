@@ -69,9 +69,8 @@
         <button class="btn-menu" onclick="showScreen('photos-screen')">Ver fotos de las jornadas deportivas</button>
         <button class="btn-menu" onclick="showScreen('stats-screen')">Estadísticas del equipo y jugadores</button>
         <button class="btn-menu" onclick="showScreen('roster-screen')">Revisar el roster de jugadores</button>
-        
       </div>
-<a href="juegos/juego.html" class="btn-restart" target="_blank">Prueba el Juego</a>
+      <a href="juegos/juego.html" class="btn-start" target="_blank">Prueba el Juego</a>
       <a href="https://www.instagram.com/arkansasstatemx/" class="btn-restart" target="_blank">Síguenos en Instagram</a>
     </div>
 
@@ -110,172 +109,307 @@
     <!-- Pantalla: Estadísticas con Gráficas de Radar -->
     <div id="stats-screen" class="hidden">
       <h2>Estadísticas del Equipo (Semana 6)</h2>
+      
+      <!-- Tarjetas KPI -->
+      <div class="stats-summary-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Puntos a Favor (OF)</div>
+          <div class="kpi-value">23 <span class="kpi-unit">pts</span></div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-title">Yardas Ganadas</div>
+          <div class="kpi-value">643 <span class="kpi-unit">yd</span></div>
+          <div class="kpi-subtext">Tierra: 530 | Aire: 113</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Yardas Permitidas</div>
+          <div class="kpi-value">1172 <span class="kpi-unit">yd</span></div>
+          <div class="kpi-subtext">Tierra: 732 | Aire: 440</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Promedio / Juego</div>
+          <div class="kpi-value">107.2 <span class="kpi-unit green">Ganadas</span></div>
+          <div class="kpi-subtext">195.3 Permitidas</div>
+        </div>
+      </div>
+
+      <!-- Grillas de Gráficas de Radar -->
       <div class="stats-container">
-        <p><strong>Puntos a Favor (OF):</strong> 23 pts</p>
-        <p><strong>Yardas Totales Ganadas:</strong> 643 yd (Tierra: 530 / Aire: 113)</p>
-        <p><strong>Yardas Totales Permitidas:</strong> 1172 yd (Tierra: 732 / Aire: 440)</p>
-        <p><strong>Promedio Yardas por Juego:</strong> 107.2 Ganadas / 195.3 Permitidas</p>
-      </div>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Quarterbacks (Pase y Tierra)</h3>
+            <div class="chart-container">
+              <canvas id="qbChart"></canvas>
+            </div>
+          </div>
 
-      HTML
-<div class="stats-container">
-  <div class="charts-grid">
-    
-    <!-- 1. Gráfica Quarterbacks -->
-    <div class="chart-card">
-      <h3>Quarterbacks (Pase y Tierra)</h3>
-      <div class="chart-container">
-        <canvas id="qbChart"></canvas>
-      </div>
-    </div>
+          <div class="chart-card">
+            <h3>Corredores (Aporte Terrestre)</h3>
+            <div class="chart-container">
+              <canvas id="rbChart"></canvas>
+            </div>
+          </div>
 
-    <!-- 2. Gráfica Corredores -->
-    <div class="chart-card">
-      <h3>Corredores (Aporte Terrestre)</h3>
-      <div class="chart-container">
-        <canvas id="rbChart"></canvas>
-      </div>
-    </div>
+          <div class="chart-card">
+            <h3>Receptores (Volumen, Eficiencia y Explosividad)</h3>
+            <div class="chart-container">
+              <canvas id="wrChart"></canvas>
+            </div>
+          </div>
 
-    <!-- 3. Gráfica Receptores -->
-    <div class="chart-card">
-      <h3>Receptores (Volumen, Eficiencia y Explosividad)</h3>
-      <div class="chart-container">
-        <canvas id="wrChart"></canvas>
+          <div class="chart-card">
+            <h3>Líderes Defensivos</h3>
+            <div class="chart-container">
+              <canvas id="defChart"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- 4. Gráfica Defensiva -->
-    <div class="chart-card">
-      <h3>Líderes Defensivos</h3>
-      <div class="chart-container">
-        <canvas id="defChart"></canvas>
-      </div>
-    </div>
-
-  </div>
-</div>
 
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
 
-    <!-- Pantalla: Roster -->
+    <!-- Pantalla: Roster Rediseñado -->
     <div id="roster-screen" class="hidden">
       <h2>Roster de Jugadores</h2>
-      <ul class="roster-list">
-        <h3>Quarterbacks(QB)</h3>
-        <li>#8 FERNANDO COLLADO VAZQUEZ (19 años)</li>
-        <li>#9 IKER ALEJANDRO MUÑOZ SANCHEZ (20 años)</li>
-        <li>#12 DEREK ZEPEDA GUTIERREZ (18 años)</li>
-        <li>#14 FERNANDO GABRIEL ESCALONA NAVA (21 años)</li>
+      
+      <div class="roster-container">
+        
+        <!-- Quarterbacks -->
+        <div class="roster-section">
+          <div class="position-badge">Quarterbacks (QB)</div>
+          <div class="players-grid">
+            <div class="player-card">
+              <span class="jersey-num">#8</span>
+              <div class="player-info">
+                <span class="player-name">FERNANDO COLLADO VAZQUEZ</span>
+                <span class="player-age">19 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#9</span>
+              <div class="player-info">
+                <span class="player-name">IKER ALEJANDRO MUÑOZ SANCHEZ</span>
+                <span class="player-age">20 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#12</span>
+              <div class="player-info">
+                <span class="player-name">DEREK ZEPEDA GUTIERREZ</span>
+                <span class="player-age">18 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#14</span>
+              <div class="player-info">
+                <span class="player-name">FERNANDO GABRIEL ESCALONA NAVA</span>
+                <span class="player-age">21 años</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <h3>Running Backs(RB)</h3>
-        <li>#7 KALEV EMILIANO ESCOBAR DARIO (20 años)</li>
-        <li>#15 HÉCTOR SÁNCHEZ SALASAR (20 años)</li>
-        <li>#20 MOISES IGNACIO DÍAZ EZCURRA (25 años)</li>
-        <li>#27 DIEGO SANTIAGO MANZANO BAEZ (20 años)</li>
-        <li>#32 EMILIANO ADE HERNÁNDEZ DUARTE (19 años)</li>
-        <li>#40 JAVIER SALAS ROBLES (19 años)</li>
-        <li>#83 JESUS BOGARD IBARRA AGUIRRE (20 años)</li>
+        <!-- Running Backs -->
+        <div class="roster-section">
+          <div class="position-badge">Running Backs (RB)</div>
+          <div class="players-grid">
+            <div class="player-card">
+              <span class="jersey-num">#7</span>
+              <div class="player-info">
+                <span class="player-name">KALEV EMILIANO ESCOBAR DARIO</span>
+                <span class="player-age">20 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#15</span>
+              <div class="player-info">
+                <span class="player-name">HÉCTOR SÁNCHEZ SALASAR</span>
+                <span class="player-age">20 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#20</span>
+              <div class="player-info">
+                <span class="player-name">MOISES IGNACIO DÍAZ EZCURRA</span>
+                <span class="player-age">25 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#27</span>
+              <div class="player-info">
+                <span class="player-name">DIEGO SANTIAGO MANZANO BAEZ</span>
+                <span class="player-age">20 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#32</span>
+              <div class="player-info">
+                <span class="player-name">EMILIANO ADE HERNÁNDEZ DUARTE</span>
+                <span class="player-age">19 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#40</span>
+              <div class="player-info">
+                <span class="player-name">JAVIER SALAS ROBLES</span>
+                <span class="player-age">19 años</span>
+              </div>
+            </div>
+            <div class="player-card">
+              <span class="jersey-num">#83</span>
+              <div class="player-info">
+                <span class="player-name">JESUS BOGARD IBARRA AGUIRRE</span>
+                <span class="player-age">20 años</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <h3>Wide Receivers(WR)</h3>
-        <li>#0 GENARO FLORES LOBATO (21 años)</li>
-        <li>#1 ALAN OMAR MORA FLORES (20 años)</li>
-        <li>#2 JORGE ÁNDRES HERRERA MARTÍNEZ (20 años)</li>
-        <li>#4 DIEGO HAZIEL SANCHEZ DIAZ (22 años)</li>
-        <li>#5 JORGE ANDRÉ FLORES BASURTO (21 años)</li>
-        <li>#6 SIGFRIDO LÓPEZ JONGUITUD (20 años)</li>
-        <li>#13 JOSE MANUEL ROLDAN VEJAR (19 años)</li>
-        <li>#16 CARLOS ANDRES MONTERRUBIO RESILLAS (20 años)</li>
-        <li>#18 ANDRE RODRIGO VERGARA BAUTISTA (20 años)</li>
-        <li>#19 SANTIAGO VARGAS RUIZ (20 años)</li>
-        <li>#85 DANIEL BELTRAN MENDOZA (23 años)</li>
-        <li>#88 LUCAS ESPINOSA BURNS (20 años)</li>
+        <!-- Wide Receivers -->
+        <div class="roster-section">
+          <div class="position-badge">Wide Receivers (WR)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#0</span><div class="player-info"><span class="player-name">GENARO FLORES LOBATO</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#1</span><div class="player-info"><span class="player-name">ALAN OMAR MORA FLORES</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#2</span><div class="player-info"><span class="player-name">JORGE ÁNDRES HERRERA MARTÍNEZ</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#4</span><div class="player-info"><span class="player-name">DIEGO HAZIEL SANCHEZ DIAZ</span><span class="player-age">22 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#5</span><div class="player-info"><span class="player-name">JORGE ANDRÉ FLORES BASURTO</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#6</span><div class="player-info"><span class="player-name">SIGFRIDO LÓPEZ JONGUITUD</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#13</span><div class="player-info"><span class="player-name">JOSE MANUEL ROLDAN VEJAR</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#16</span><div class="player-info"><span class="player-name">CARLOS ANDRES MONTERRUBIO RESILLAS</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#18</span><div class="player-info"><span class="player-name">ANDRE RODRIGO VERGARA BAUTISTA</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#19</span><div class="player-info"><span class="player-name">SANTIAGO VARGAS RUIZ</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#85</span><div class="player-info"><span class="player-name">DANIEL BELTRAN MENDOZA</span><span class="player-age">23 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#88</span><div class="player-info"><span class="player-name">LUCAS ESPINOSA BURNS</span><span class="player-age">20 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Tight Ends(TE)</h3>
-        <li>#99 JOSE CARLOS VALLEJO CABALLERO (24 años)</li>
+        <!-- Tight Ends -->
+        <div class="roster-section">
+          <div class="position-badge">Tight Ends (TE)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#99</span><div class="player-info"><span class="player-name">JOSE CARLOS VALLEJO CABALLERO</span><span class="player-age">24 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Offensive Line(OL)</h3>
-        <li>#54 ALAN REVUELTA DEL RIO (21 años)</li>
-        <li>#55 SANTIAGO VILLELA ARJONA (20 años)</li>
-        <li>#62 MARCO ANTONIO VARGAS ABARCA (21 años)</li>
-        <li>#66 LEONARDO AGUINACO CHOWELL (20 años)</li>
-        <li>#69 FRANCISCO ALEJANDRO BALLESTEROS GONZALEZ (25 años)</li>
-        <li>#70 ABRAHAM CERVANTES ORTIZ (19 años)</li>
-        <li>#71 HÉCTOR ANTÚNEZ ROBLES (19 años)</li>
-        <li>#74 MIGUEL ÁNGEL LIMA CORDERO (20 años)</li>
-        <li>#75 DITTER ALEXANDER SORIA BETANCOURT (20 años)</li>
-        <li>#77 DAVID AZCONA ALONSO (21 años)</li>
-        <li>#79 DIEGO ZUÑIGA MARIN (22 años)</li>
+        <!-- Offensive Line -->
+        <div class="roster-section">
+          <div class="position-badge">Offensive Line (OL)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#54</span><div class="player-info"><span class="player-name">ALAN REVUELTA DEL RIO</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#55</span><div class="player-info"><span class="player-name">SANTIAGO VILLELA ARJONA</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#62</span><div class="player-info"><span class="player-name">MARCO ANTONIO VARGAS ABARCA</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#66</span><div class="player-info"><span class="player-name">LEONARDO AGUINACO CHOWELL</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#69</span><div class="player-info"><span class="player-name">FRANCISCO ALEJANDRO BALLESTEROS GONZALEZ</span><span class="player-age">25 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#70</span><div class="player-info"><span class="player-name">ABRAHAM CERVANTES ORTIZ</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#71</span><div class="player-info"><span class="player-name">HÉCTOR ANTÚNEZ ROBLES</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#74</span><div class="player-info"><span class="player-name">MIGUEL ÁNGEL LIMA CORDERO</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#75</span><div class="player-info"><span class="player-name">DITTER ALEXANDER SORIA BETANCOURT</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#77</span><div class="player-info"><span class="player-name">DAVID AZCONA ALONSO</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#79</span><div class="player-info"><span class="player-name">DIEGO ZUÑIGA MARIN</span><span class="player-age">22 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Defensive Line(DL)</h3>
-        <li>#24 JAIME GAEL JIMENEZ CRUZ (24 años)</li>
-        <li>#25 BRUNO RAVELO RODRÍGUEZ (25 años)</li>
-        <li>#43 EMILIO JIMENEZ PAZ (19 años)</li>
-        <li>#51 DIEGO NÚÑEZ MORENO (19 años)</li>
-        <li>#59 EMILIO HUITRON FLORES (20 años)</li>
-        <li>#60 JORGE ANTONIO PEREZ SANCHEZ (21 años)</li>
-        <li>#90 JUAN MANUEL ROBLES APANTENCO (22 años)</li>
-        <li>#91 DIEGO PEREDO SORDO (18 años)</li>
-        <li>#95 JOSÉ PABLO GÁLVEZ ALCÁNTAR (20 años)</li>
-        <li>#96 OSCAR MAURICIO PEREZ NUÑEZ (18 años)</li>
-        <li>#97 HÉCTOR ALEJANDRO ESTRADA LOZA (20 años)</li>
-        <li>#98 FERNANDO LOPEZ CHAVIRA (18 años)</li>
+        <!-- Defensive Line -->
+        <div class="roster-section">
+          <div class="position-badge">Defensive Line (DL)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#24</span><div class="player-info"><span class="player-name">JAIME GAEL JIMENEZ CRUZ</span><span class="player-age">24 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#25</span><div class="player-info"><span class="player-name">BRUNO RAVELO RODRÍGUEZ</span><span class="player-age">25 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#43</span><div class="player-info"><span class="player-name">EMILIO JIMENEZ PAZ</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#51</span><div class="player-info"><span class="player-name">DIEGO NÚÑEZ MORENO</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#59</span><div class="player-info"><span class="player-name">EMILIO HUITRON FLORES</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#60</span><div class="player-info"><span class="player-name">JORGE ANTONIO PEREZ SANCHEZ</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#90</span><div class="player-info"><span class="player-name">JUAN MANUEL ROBLES APANTENCO</span><span class="player-age">22 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#91</span><div class="player-info"><span class="player-name">DIEGO PEREDO SORDO</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#95</span><div class="player-info"><span class="player-name">JOSÉ PABLO GÁLVEZ ALCÁNTAR</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#96</span><div class="player-info"><span class="player-name">OSCAR MAURICIO PEREZ NUÑEZ</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#97</span><div class="player-info"><span class="player-name">HÉCTOR ALEJANDRO ESTRADA LOZA</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#98</span><div class="player-info"><span class="player-name">FERNANDO LOPEZ CHAVIRA</span><span class="player-age">18 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Linebackers(LB)</h3>
-        <li>#3 PAOLO BOLIO FERNANDEZ DE LARA (24 años)</li>
-        <li>#10 ALAN ZALDIVAR GUIDO (23 años)</li>
-        <li>#17 ELIAN GABRIEL GARCÍA VALOIS (19 años)</li>
-        <li>#21 GAEL AMADOR RIVAS (20 años)</li>
-        <li>#29 SANTIAGO LEVY AMADOR RIVAS (20 años)</li>
-        <li>#44 RODRIGO ARTURO CHAVEZ VARELA (21 años)</li>
-        <li>#50 MIGUEL ANGEL QUIÑONES HERNÁNDEZ (18 años)</li>
-        <li>#52 CARLO SANTIAGO OSEGUERA CABALLERO (18 años)</li>
-        <li>#53 JUAN PABLO BARCENAS DIAZ (21 años)</li>
-        <li>#56 ALVARO DÍAZ TONDA (20 años)</li>
-        <li>#57 LEONEL ALEJANDRO COSGALLA GARCÍA (18 años)</li>
-        <li>#58 IKER YAÑEZ RAMIREZ (20 años)</li>
+        <!-- Linebackers -->
+        <div class="roster-section">
+          <div class="position-badge">Linebackers (LB)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#3</span><div class="player-info"><span class="player-name">PAOLO BOLIO FERNANDEZ DE LARA</span><span class="player-age">24 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#10</span><div class="player-info"><span class="player-name">ALAN ZALDIVAR GUIDO</span><span class="player-age">23 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#17</span><div class="player-info"><span class="player-name">ELIAN GABRIEL GARCÍA VALOIS</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#21</span><div class="player-info"><span class="player-name">GAEL AMADOR RIVAS</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#29</span><div class="player-info"><span class="player-name">SANTIAGO LEVY AMADOR RIVAS</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#44</span><div class="player-info"><span class="player-name">RODRIGO ARTURO CHAVEZ VARELA</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#50</span><div class="player-info"><span class="player-name">MIGUEL ANGEL QUIÑONES HERNÁNDEZ</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#52</span><div class="player-info"><span class="player-name">CARLO SANTIAGO OSEGUERA CABALLERO</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#53</span><div class="player-info"><span class="player-name">JUAN PABLO BARCENAS DIAZ</span><span class="player-age">21 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#56</span><div class="player-info"><span class="player-name">ALVARO DÍAZ TONDA</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#57</span><div class="player-info"><span class="player-name">LEONEL ALEJANDRO COSGALLA GARCÍA</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#58</span><div class="player-info"><span class="player-name">IKER YAÑEZ RAMIREZ</span><span class="player-age">20 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Cornerbacks(CB)</h3>
-        <li>#22 JAIME FUENTES SANTILLAN (25 años)</li>
-        <li>#23 ORLANDO IVAN BENAVIDES RAMOS (20 años)</li>
-        <li>#28 EMILIO AGUSTIN SALVADOR ALVAREZ (18 años)</li>
-        <li>#31 DIEGO VILLANUEVA SAMANO (19 años)</li>
-        <li>#93 BRUNO HERNANDEZ GALINDO (19 años)</li>
+        <!-- Cornerbacks -->
+        <div class="roster-section">
+          <div class="position-badge">Cornerbacks (CB)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#22</span><div class="player-info"><span class="player-name">JAIME FUENTES SANTILLAN</span><span class="player-age">25 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#23</span><div class="player-info"><span class="player-name">ORLANDO IVAN BENAVIDES RAMOS</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#28</span><div class="player-info"><span class="player-name">EMILIO AGUSTIN SALVADOR ALVAREZ</span><span class="player-age">18 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#31</span><div class="player-info"><span class="player-name">DIEGO VILLANUEVA SAMANO</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#93</span><div class="player-info"><span class="player-name">BRUNO HERNANDEZ GALINDO</span><span class="player-age">19 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Strong Safety(SS)</h3>
-        <li>#11 PATRICIO TREJO GUTIÉRREZ (24 años)</li>
-        <li>#26 DEMIAN ALEJANDRO GONZÁLEZ ANDRADE (19 años)</li>
-        <li>#33 GONZALO COALLA MUÑOZ (20 años)</li>
-        <li>#39 JORGE DIEGO ARENAS JONGUITUD (18 años)</li>
+        <!-- Strong Safety -->
+        <div class="roster-section">
+          <div class="position-badge">Strong Safety (SS)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#11</span><div class="player-info"><span class="player-name">PATRICIO TREJO GUTIÉRREZ</span><span class="player-age">24 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#26</span><div class="player-info"><span class="player-name">DEMIAN ALEJANDRO GONZÁLEZ ANDRADE</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#33</span><div class="player-info"><span class="player-name">GONZALO COALLA MUÑOZ</span><span class="player-age">20 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#39</span><div class="player-info"><span class="player-name">JORGE DIEGO ARENAS JONGUITUD</span><span class="player-age">18 años</span></div></div>
+          </div>
+        </div>
 
-        <h3>Free Safety(FS)</h3>
-        <li>#34 SANTIAGO CEREZO QUIZA (19 años)</li>
-        <li>#42 SANTIAGO LOPEZ SIGLER (19 años)</li>
-      </ul>
+        <!-- Free Safety -->
+        <div class="roster-section">
+          <div class="position-badge">Free Safety (FS)</div>
+          <div class="players-grid">
+            <div class="player-card"><span class="jersey-num">#34</span><div class="player-info"><span class="player-name">SANTIAGO CEREZO QUIZA</span><span class="player-age">19 años</span></div></div>
+            <div class="player-card"><span class="jersey-num">#42</span><div class="player-info"><span class="player-name">SANTIAGO LOPEZ SIGLER</span><span class="player-age">19 años</span></div></div>
+          </div>
+        </div>
+
+      </div>
+
       <button class="btn-start" onclick="showScreen('result-screen')">Volver a Resultados</button>
     </div>
   </div>
-  <!-- Modal de Valoración -->
-<div id="feedback-modal" class="modal-overlay hidden">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
-    <h2>¡Valora tu experiencia!</h2>
-    <p>Déjanos saber qué opinas de nuestra página:</p>
-    
-    <div class="rating-stars">
-      <span onclick="setRating(1)">★</span>
-      <span onclick="setRating(2)">★</span>
-      <span onclick="setRating(3)">★</span>
-      <span onclick="setRating(4)">★</span>
-      <span onclick="setRating(5)">★</span>
-    </div>
 
-    <textarea id="feedback-comment" placeholder="Escribe tu comentario aquí (opcional)..." rows="4"></textarea>
-    
-    <button class="btn-start" onclick="submitFeedback()">Enviar Valoración</button>
+  <!-- Modal de Valoración -->
+  <div id="feedback-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+      <h2>¡Valora tu experiencia!</h2>
+      <p>Déjanos saber qué opinas de nuestra página:</p>
+      
+      <div class="rating-stars">
+        <span onclick="setRating(1)">★</span>
+        <span onclick="setRating(2)">★</span>
+        <span onclick="setRating(3)">★</span>
+        <span onclick="setRating(4)">★</span>
+        <span onclick="setRating(5)">★</span>
+      </div>
+
+      <textarea id="feedback-comment" placeholder="Escribe tu comentario aquí (opcional)..." rows="4"></textarea>
+      
+      <button class="btn-start" onclick="submitFeedback()">Enviar Valoración</button>
+    </div>
   </div>
-</div>
 
   <!-- Librerías Externas -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -285,5 +419,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
